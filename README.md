@@ -78,7 +78,7 @@ pip install -r requirements.txt
 
 ## 🗣️ Basic Usage
 
-### ▶️ Command Line Usage
+### - Command Line Usage
 After installing dependencies and creating an environment,  
 you can run CELLIA in two ways:
 ```bash
@@ -98,7 +98,7 @@ http://localhost:port
 python run_cellia.py
 ```
 
-### ▶️ Python script / Jupyter notebooks Usage
+### - Python script / Jupyter notebooks Usage
 
 ```python
 from cellia import *
