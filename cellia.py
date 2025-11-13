@@ -915,7 +915,7 @@ def cellia_run(
         adata=adata,
         tissue_type=tissue_type,
         api_key=api_key,
-        mode="gpt-4.1-2025-04-14"
+        model=model
     )
 
     return adata
