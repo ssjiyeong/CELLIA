@@ -26,12 +26,13 @@ Conventional cell type annotation relies on manual curation or reference mapping
 CELLIA/
 │
 ├── cellia.py             # Core workflow
-├── cellia_web.py         # Interactive visualization 
-├── cellia.py             # Core workflow
-├── cellia_web.py         # Interactive visualization 
+├── cellia_web.py         # Web interface
+│
+├── run_cellia.py         # Script to run LLM-based annotation only
+├── run_cellia_web.py     # Script to run full workflow (annotation + web)
 │  
 ├── dataset/              # Example datasets (.h5ad)
-│   └── CRC.h5ad
+│   └── CRC.h5ad          # Example AnnData file used for testing
 │ 
 ├── database/             # Curated tissue-specific marker gene resources
 │   └── Marker_DB.csv
