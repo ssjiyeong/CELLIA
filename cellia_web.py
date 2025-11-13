@@ -81,7 +81,7 @@ def _parse_marker_expl(value: str) -> dict:
     return expl
 
 
-def build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json: Optional[Dict[str, Any]] = None):
+def build_marker_info_from_uns(adata, cluster_key="cluster", num_top_k: int = 15, rationale_json: Optional[Dict[str, Any]] = None):
     df_m = pd.DataFrame(adata.uns["marker_list"]).copy()
     df_g = pd.DataFrame(adata.uns.get("GPT_annotation_db", pd.DataFrame(columns=["cluster","LLM_annotation","markers","evidence_score","evidence_reason","marker_explanations"]))).copy()
     
@@ -106,7 +106,7 @@ def build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json: Opt
         df_m.sort_values(["cluster", "avg_log2FC"], ascending=[True, False])
             .groupby("cluster")
             .apply(lambda sub: {
-                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].tolist(),
+                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].head(num_top_k).tolist(),
                 "stats": sub[["gene","avg_log2FC","pct.1","pct.2","p_val_adj"]].to_dict("records")
             }).to_dict()
     )
@@ -386,10 +386,10 @@ def _load_rationale_file(path: str) -> Optional[dict]:
     return out
 
 
-def launch_cap_style_app(adata, port=8051, debug=True, rationale_json_path: Optional[str] = None):
+def launch_cap_style_app(adata, port=8051, sdebug=True, num_top_k: int = 15, rationale_json_path: Optional[str] = None):
     #_ensure_plotly_theme()
     rj = _load_rationale_file(rationale_json_path)
-    marker_info = build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json=rj)
+    marker_info = build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json=rj, num_top_k=num_top_k)
     umap_df = make_umap_df(adata, marker_info, cluster_key="cluster")
     cache_stats = precompute_cluster_gene_stats(adata, marker_info, cluster_key="cluster")
 
