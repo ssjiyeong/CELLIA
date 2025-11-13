@@ -57,7 +57,7 @@ def parse_args():
     parser.add_argument(
         "--rationale_json",
         type=str,
-        default="cellia_output/gpt_explanations_db.json",
+        default="../cellia_output/gpt_explanations_db.json",
         help="Path to JSON file containing LLM explanations/rationales.",
     )
 
@@ -106,7 +106,7 @@ def main():
     print("Save to dataset/CRC_cellia_annotated.h5ad\n")
     print("Launching web interface...")
 
-    rationale_path = "../cellia_output/gpt_explanations_db.json"
+    # rationale_path = "../cellia_output/gpt_explanations_db.json"
     
     # Launch interactive web app
     launch_cap_style_app(
