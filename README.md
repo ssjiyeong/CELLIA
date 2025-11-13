@@ -49,10 +49,14 @@ CELLIA/
 ```bash
 git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
+
 conda create -n cellia_env python=3.9 -y
+
 source ~/.bashrc
 conda activate cellia_env
+
 pip install -r requirements.txt
+
 export API_KEY="YOUR_API_KEY"
 python run_cellia.py
 ```
