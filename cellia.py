@@ -1,4 +1,15 @@
-def find_markers(adata, groupby="cluster", method="wilcoxon", corr_method="bonferroni", tie_correct=True):
+from pathlib import Path
+from typing import Optional
+
+import scanpy as sc
+
+def find_markers(
+        adata: sc.AnnData, 
+        groupby="cluster", 
+        method="wilcoxon", 
+        corr_method="bonferroni", 
+        tie_correct=True
+    ) -> sc.AnnData:
     """
     Identify marker genes for each cluster and store results in adata.uns['find_markers'].
 
@@ -60,14 +71,14 @@ def find_markers(adata, groupby="cluster", method="wilcoxon", corr_method="bonfe
 
 
 def filter_markers(
-    adata, 
-    k=15, 
-    mode="db",  # "db", "subset_db"
-    tissue_db=None,
-    subset_db=None,
-    db_path="./database/Marker_DB.csv",
-    deg_mode: str = "major",  # "major" or "subset"
-    ):
+        adata: sc.AnnData, 
+        k=15, 
+        mode="db",  # "db", "subset_db"
+        tissue_db=None,
+        subset_db=None,
+        db_path="./database/Marker_DB.csv",
+        deg_mode: str = "major",  # "major" or "subset"
+    ) -> sc.AnnData:
     import pandas as pd
     import scanpy as sc
     import numpy as np
@@ -161,15 +172,15 @@ def filter_markers(
     adata.uns[key_name] = final_df
 
 def gpt_anno(   
-    adata, 
-    tissue_type: str, 
-    api_key: str, 
-    model="gpt-4.1-2025-04-14",
-    marker_mode="db",  # "db" or "subset_db"
-    mode="major", # major or subset
-    parent_celltype=None,
-    db_path="./database/Marker_DB.csv"
-    ):
+        adata: sc.AnnData, 
+        tissue_type: str, 
+        api_key: str, 
+        model="gpt-4.1-2025-04-14",
+        marker_mode="db",  # "db" or "subset_db"
+        mode="major", # major or subset
+        parent_celltype=None,
+        db_path="./database/Marker_DB.csv"
+    ) -> sc.AnnData:
     """
     GPT-based cell type annotation from marker genes.
     
@@ -231,7 +242,7 @@ def gpt_anno(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../scTAG_DB_Results"
+    output_dir = "../cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     # --- Loop over clusters ---
@@ -391,15 +402,15 @@ def gpt_anno(
 
 
 def gemini_anno(
-    adata, 
-    tissue_type: str, 
-    api_key: str, 
-    model_name="models/gemini-2.5-flash-lite",
-    marker_mode="db",  # "db" or "subset_db"
-    mode="major", # major or subset
-    parent_celltype=None,
-    db_path="./database/Marker_DB.csv"
-    ):
+        adata: sc.AnnData, 
+        tissue_type: str, 
+        api_key: str, 
+        model_name="models/gemini-2.5-flash-lite",
+        marker_mode="db",  # "db" or "subset_db"
+        mode="major", # major or subset
+        parent_celltype=None,
+        db_path="./database/Marker_DB.csv"
+    ) -> sc.AnnData:
     """
     Gemini-based cell type annotation from marker genes.
 
@@ -469,7 +480,7 @@ def gemini_anno(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../scTAG_DB_Results"
+    output_dir = "../cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     for cluster in tqdm(unique_clusters, desc="LLM annotation per cluster"):
@@ -610,15 +621,15 @@ def gemini_anno(
     return adata
 
 def claude_anoo(
-    adata,
-    tissue_type: str,
-    api_key: str,
-    model="claude-sonnet-4-5",
-    marker_mode="db",   # "db" or "subset_db"
-    mode="major",       # "major" or "subset"
-    parent_celltype=None,
-    db_path: str = "./database/Marker_DB.csv"
-    ):
+        adata: sc.AnnData,
+        tissue_type: str,
+        api_key: str,
+        model="claude-sonnet-4-5",
+        marker_mode="db",   # "db" or "subset_db"
+        mode="major",       # "major" or "subset"
+        parent_celltype=None,
+        db_path: str = "./database/Marker_DB.csv"
+    ) -> sc.AnnData:
     """
     Claude-based cell type annotation from marker genes.
 
@@ -686,7 +697,7 @@ def claude_anoo(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../scTAG_DB_Results"
+    output_dir = "../cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     # --- Prompt templates ---
@@ -869,4 +880,44 @@ def claude_anoo(
 
     print(f"Claude-based annotation complete (mode={mode}). Results saved to: {output_dir}")
     return adata
+
+def cellia_run(
+        adata: sc.AnnData,
+        tissue_db: str,
+        tissue_type: str,
+        api_key: str,
+        model: str, 
+        n_top_markers: int = 15
+    ):
+    """
+    adata: AnnData
+        Processed AnnData object
+    tissue_db: str
+        Tissue name for cross-referencing database
+    tissue_type: str
+        Tissue name for constructing prompt
+    n_top_markers: int
+        Number of marker genes to extract each cluster 
+    api_key: str
+        User API Key for LLM-based cell type annotation 
+    """
+
+    # Step A: Idendtification of DEG 
+    adata = find_markers(adata=adata)
+
+    # Step B & C: Filtering DEG & selection of the top-k markers
+    adata = filter_markers(adata=adata, tissue_db=tissue_db, k=n_top_markers)
+
+    # Step D: LLM-based cell type annotation
+    adata = gpt_anno(
+        adata=adata,
+        tissue_type=tissue_type,
+        api_key=api_key,
+        mode=model
+    )
+
+    return adata
+
+__all__ = ["cellia_run", "find_markers", "filter_markers", "gpt_anno"]
+
 
