@@ -8,7 +8,7 @@ It integrates curated tissue-specific marker gene databases with structured prom
 ## 🚀 Overview
 
 Conventional cell type annotation relies on manual curation or reference mapping, which is often slow and inconsistent across tissues.  
-**CELLIA** introduces a tissue-aware, knowledge-driven pipeline that:
+**CELLIA** introduces a tissue-aware, knowledge-driven workflow that:
 
 1. Performs differentially expressed gene (DEG) analysis.  
 2. Filters candidate marker genes using curated tissue-specific marker databases.  
