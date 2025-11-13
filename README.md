@@ -88,7 +88,7 @@ export API_KEY="YOUR_API_KEY"
 ```bash
 python run_cellia_web.py   
 ```
-Then open the web interface in your brower: \
+Then open the web interface in your brower:
 ```text
 http://localhost:port
 ```
@@ -115,11 +115,14 @@ adata = cellia_run(
     model="gpt-4.1-2025-04-14"
 )
 ```
+---
 
 ## 📘 Tutorial
 
 A Jupyter notebook tutorial is provided in **cellia_tutorial.ipynb**. \
 It shows the full CELLIA workflow with example data.
+
+---
 
 ## Advanced usage (override defaults via CLI arguments)
 
