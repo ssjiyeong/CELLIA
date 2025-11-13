@@ -386,7 +386,7 @@ def _load_rationale_file(path: str) -> Optional[dict]:
     return out
 
 
-def launch_cap_style_app(adata, port=8051, sdebug=True, num_top_k: int = 15, rationale_json_path: Optional[str] = None):
+def launch_cap_style_app(adata, port=8051, debug=True, num_top_k: int = 15, rationale_json_path: Optional[str] = None):
     #_ensure_plotly_theme()
     rj = _load_rationale_file(rationale_json_path)
     marker_info = build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json=rj, num_top_k=num_top_k)
