@@ -49,10 +49,7 @@ CELLIA/
 ```bash
 git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-pytest
 ```
 
 > Recommended: Python ≥ 3.9 with Scanpy and Clustered AnnData
@@ -102,10 +99,8 @@ adata = cellia_run(
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-pip install pytest black isort flake8 pre-commit
-pre-commit install
 pytest
 ```
 
