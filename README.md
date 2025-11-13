@@ -30,7 +30,16 @@ CELLIA/
 ├── dataset/              # Example datasets (.h5ad)
 ├── database/             # Curated tissue-specific marker gene resources
 ├── requirements.txt      # Dependencies
-└── README.md             # Documentation
+├── README.md             # Documentation
+│
+├── tests/
+│   └── test_import.py
+├── .github/
+│   └── workflows/
+│       └── test.yml      # GitHub Actions 
+│
+├── .env.example          # API KEY
+└── .gitignore
 ```
 
 ---
@@ -40,7 +49,10 @@ CELLIA/
 ```bash
 git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+pytest
 ```
 
 > Recommended: Python ≥ 3.9 with Scanpy and Clustered AnnData
