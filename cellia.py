@@ -171,6 +171,8 @@ def filter_markers(
         key_name = f"marker_list_subset"
     adata.uns[key_name] = final_df
 
+    return adata
+
 def gpt_anno(   
         adata: sc.AnnData, 
         tissue_type: str, 
