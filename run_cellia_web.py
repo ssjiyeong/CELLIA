@@ -30,7 +30,7 @@ def main():
 
     rationale_path = "../cellia_output/gpt_explanations_db.json"
 
-    # 7) 웹 앱 실행
+
     launch_cap_style_app(
         adata=adata,
         port=8051,
