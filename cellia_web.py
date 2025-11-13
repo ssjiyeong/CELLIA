@@ -106,7 +106,7 @@ def build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json: Opt
         df_m.sort_values(["cluster", "avg_log2FC"], ascending=[True, False])
             .groupby("cluster")
             .apply(lambda sub: {
-                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].head(15).tolist(),
+                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].tolist(),
                 "stats": sub[["gene","avg_log2FC","pct.1","pct.2","p_val_adj"]].to_dict("records")
             }).to_dict()
     )
@@ -156,7 +156,7 @@ def build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json: Opt
             expl.update(llm["marker_explanations"])
             llm_explained_genes.update(llm["marker_explanations"].keys())
             for gene in db.get("top15_db", []):
-                expl.setdefault(gene, "from DB (top 15 by avg_log2FC)")
+                expl.setdefault(gene, "from DB (top-k by avg_log2FC)")
         else:
             # Fallback if no 'marker_explanations' column exists.
             llm_genes = llm.get("llm_markers", [])
@@ -164,7 +164,7 @@ def build_marker_info_from_uns(adata, cluster_key="cluster", rationale_json: Opt
             for gene in llm_genes: 
                 expl[gene] = "LLM-selected marker"
             for gene in db.get("top15_db", []): 
-                expl.setdefault(gene, "from DB (top 15 by avg_log2FC)")
+                expl.setdefault(gene, "from DB (top-k by avg_log2FC)")
 
         marker_info[cid] = {
             "cell_type": cell_type, "confidence": confidence, "marker_explanations": expl,
@@ -291,7 +291,7 @@ def make_explanation_card(cluster_id, marker_info):
         html.Hr(),
         html.Div([html.Div("Rationale", className="eyebrow"), html.P(rationale, className="rationale-text")], className="section"),
         html.Hr(),
-        html.Div([html.Div("Top 15 Markers", className="eyebrow"),
+        html.Div([html.Div("Top-k Markers", className="eyebrow"),
                   html.Div(chips or html.Span("No markers found.", className="muted"), className="chip-row")], className="section"),
         html.Hr(),
         html.Div([html.Div("Marker Explanations", className="eyebrow"),
