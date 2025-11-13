@@ -110,9 +110,9 @@ If you use **CELLIA** in your work, please cite:
 
 ## 📬 Contact
 
-**Author:** Jiyeong Shin
-**GitHub:** [ssjiyeong](https://github.com/ssjiyeong) 
-**Email:** sssjiyeong@gmail.com
+**Author:** Jiyeong Shin \
+**GitHub:** [ssjiyeong](https://github.com/ssjiyeong) \
+**Email:** sssjiyeong@gmail.com 
 
 ---
 
