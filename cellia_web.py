@@ -106,7 +106,7 @@ def build_marker_info_from_uns(adata, cluster_key="cluster", num_top_k: int = 15
         df_m.sort_values(["cluster", "avg_log2FC"], ascending=[True, False])
             .groupby("cluster")
             .apply(lambda sub: {
-                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].head(15).tolist(),
+                "db_genes": sub["gene"].tolist(), "top15_db": sub["gene"].head(num_top_k).tolist(),
                 "stats": sub[["gene","avg_log2FC","pct.1","pct.2","p_val_adj"]].to_dict("records")
             }).to_dict()
     )
