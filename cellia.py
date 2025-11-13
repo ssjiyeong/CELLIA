@@ -888,7 +888,7 @@ def cellia_run(
         tissue_db: str,
         tissue_type: str,
         api_key: str,
-        model: str, 
+        model: str = "gpt-4.1-2025-04-14", 
         n_top_markers: int = 15
     ):
     """
