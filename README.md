@@ -27,19 +27,17 @@ CELLIA/
 │
 ├── cellia.py             # Core workflow
 ├── cellia_web.py         # Interactive visualization 
+├── cellia.py             # Core workflow
+├── cellia_web.py         # Interactive visualization 
+│  
 ├── dataset/              # Example datasets (.h5ad)
+│   └── CRC.h5ad
+│ 
 ├── database/             # Curated tissue-specific marker gene resources
+│   └── Marker_DB.csv
+│ 
 ├── requirements.txt      # Dependencies
-├── README.md             # Documentation
-│
-├── tests/
-│   └── test_import.py
-├── .github/
-│   └── workflows/
-│       └── test.yml      # GitHub Actions 
-│
-├── .env.example          # API KEY
-└── .gitignore
+└── README.md             # Documentation
 ```
 
 ---
@@ -50,14 +48,36 @@ CELLIA/
 git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
 
+# ---------------------------------------------------------
+# OPTION A: If you have Conda installed (recommended)
+# ---------------------------------------------------------
+# Create and activate a Conda environment
 conda create -n cellia_env python=3.9 -y
-
-source ~/.bashrc
+source ~/.bashrc     # If you need
 conda activate cellia_env
 
+# ---------------------------------------------------------
+# OPTION B: If you do NOT have Conda installed
+# ---------------------------------------------------------
+# Create and activate a Python virtual environment instead
+# (Use this only when Conda is unavailable)
+python -m venv .venv
+source .venv/bin/activate
+
+# ---------------------------------------------------------
+# Install dependencies
+# ---------------------------------------------------------
 pip install -r requirements.txt
 
+# ---------------------------------------------------------
+# Run CELLIA
+# ---------------------------------------------------------
 export API_KEY="YOUR_API_KEY"
+
+# Full pipeline: LLM-based annotation + interactive web visualization
+python run_cellia_web.py   
+
+# LLM-based annotation only (no web interface)
 python run_cellia.py
 ```
 
@@ -75,11 +95,11 @@ adata = sc.read_h5ad("dataset/CRC.h5ad")
 
 adata = cellia_run(
     adata,
-    tissue="Colon",
+    tissue_db="crc|colon",
+    tissue_type="human colorectal cancer (CRC)",
+    api_key="YOUR_API_KEY,
     n_top_markers=15,
-    llm_model="gpt-4.1-2025-04-14",
-    db_path="database/Marker_DB.csv",
-    save_json=True
+    model="gpt-4.1-2025-04-14"
 )
 ```
 
@@ -100,17 +120,6 @@ adata = cellia_run(
     "reason": "Multiple high-specificity markers detected"
   }
 }
-```
-
----
-
-## Developer Setup
-
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-pytest 
 ```
 
 ---
