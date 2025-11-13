@@ -50,7 +50,7 @@ git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
 
 # ---------------------------------------------------------
-# OPTION A: If you have Conda installed (recommended)
+# Option A: If you have Conda installed (recommended)
 # ---------------------------------------------------------
 # Create and activate a Conda environment
 conda create -n cellia_env python=3.9 -y
@@ -58,7 +58,7 @@ source ~/.bashrc     # If you need
 conda activate cellia_env
 
 # ---------------------------------------------------------
-# OPTION B: If you do NOT have Conda installed
+# Option B: If you do NOT have Conda installed
 # ---------------------------------------------------------
 # Create and activate a Python virtual environment instead
 # (Use this only when Conda is unavailable)
@@ -69,17 +69,6 @@ source .venv/bin/activate
 # Install dependencies
 # ---------------------------------------------------------
 pip install -r requirements.txt
-
-# ---------------------------------------------------------
-# Run CELLIA
-# ---------------------------------------------------------
-export API_KEY="YOUR_API_KEY"
-
-# Full pipeline: LLM-based annotation + interactive web visualization
-python run_cellia_web.py   
-
-# LLM-based annotation only (no web interface)
-python run_cellia.py
 ```
 
 > Recommended: Python ≥ 3.9 with Scanpy and Clustered AnnData
@@ -88,8 +77,26 @@ python run_cellia.py
 
 ## 🗣️ Basic Usage
 
+### ▶️ Run CELLIA
+After installing dependencies and creating an environment (Conda or virtualenv),  
+you can run CELLIA in two ways:
+```bash
+export API_KEY="YOUR_API_KEY"
+# Full workflow: LLM-based annotation + interactive web visualization
+python run_cellia_web.py   
+```
+```text
+You can then open:
+http://localhost:port
+```
+```bash
+export API_KEY="YOUR_API_KEY"
+# LLM-based annotation only (no web interface)
+python run_cellia.py
+```
+
 ```python
-from CELLIA import cellia_run
+from cellia import *
 import scanpy as sc
 
 adata = sc.read_h5ad("dataset/CRC.h5ad")
@@ -104,6 +111,34 @@ adata = cellia_run(
 )
 ```
 
+## Advanced usage (override defaults via CLI arguments)
+
+You can override the default settings using command-line arguments.
+
+**Run full workflow (annotation + web):**
+```bash
+python run_cellia_web.py \
+  --adata dataset/YourAnnData.h5ad \
+  --tissue_db "PBMC" \
+  --tissue_type "human PBMCs" \
+  --n_top_markers 20 \
+  --api_key "YOUR_API_KEY" \
+  --model "claude-sonnet-4-5" \
+  --port 8060 \
+  --rationale_json cellia_output/gpt_explanations_db.json
+```
+
+**Run annotation only with custom inputs:**
+```bash
+python run_cellia.py \
+  --adata dataset/YourAnnData.h5ad \
+  --tissue_db "lung" \
+  --tissue_type "human lung tissue" \
+  --n_top_markers 10 \
+  --api_key "YOUR_API_KEY" \
+  --model "models/gemini-2.5-flash-lite" 
+  ```
+  
 ---
 
 ## 💻 Output Example
