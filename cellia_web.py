@@ -265,7 +265,7 @@ def make_mini_umap(umap_df):
     mini.update_traces(marker=dict(size=5, opacity=0.7), hovertemplate="Cluster %{customdata[0]}<extra></extra>")
     return mini
 
-def make_explanation_card(cluster_id, marker_info):
+def make_explanation_card(cluster_id, marker_info, num_top_k: int = 15):
     info = marker_info.get(cluster_id, {})
     ct, conf, rationale = info.get("cell_type", "Unknown"), info.get("confidence"), info.get("rationale", "No rationale provided.")
     expl = info.get("marker_explanations", {})
@@ -291,7 +291,7 @@ def make_explanation_card(cluster_id, marker_info):
         html.Hr(),
         html.Div([html.Div("Rationale", className="eyebrow"), html.P(rationale, className="rationale-text")], className="section"),
         html.Hr(),
-        html.Div([html.Div("Top 15 Markers", className="eyebrow"),
+        html.Div([html.Div(f"Top {num_top_k} Markers", className="eyebrow"),
                   html.Div(chips or html.Span("No markers found.", className="muted"), className="chip-row")], className="section"),
         html.Hr(),
         html.Div([html.Div("Marker Explanations", className="eyebrow"),
@@ -542,7 +542,7 @@ def launch_cap_style_app(adata, port=8051, debug=True, num_top_k: int = 15, rati
             return initial_card, fig
         
         cluster_id = str(clickData["points"][0]["customdata"][0])
-        card = make_explanation_card(cluster_id, marker_info)
+        card = make_explanation_card(cluster_id, marker_info, num_top_k=num_top_k)
         fig = make_dotplot_from_cache(cluster_id, marker_info, cache_stats, topk=topk)
         return card, fig
 
