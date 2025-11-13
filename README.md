@@ -141,7 +141,7 @@ python run_cellia_web.py \
   --rationale_json cellia_output/gpt_explanations_db.json
 ```
 
-**Run annotation only with custom inputs:**
+**Run annotation only:**
 ```bash
 python run_cellia.py \
   --adata dataset/YourAnnData.h5ad \
