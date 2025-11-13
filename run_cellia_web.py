@@ -114,6 +114,7 @@ def main():
         port=args.port,
         debug=True,
         rationale_json_path=args.rationale_json,
+        num_top_k=args.num_top_k
     )
 
 
