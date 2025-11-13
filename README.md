@@ -50,6 +50,8 @@ CELLIA/
 git clone https://github.com/ssjiyeong/CELLIA.git
 cd CELLIA
 pip install -r requirements.txt
+export API_KEY="YOUR_API_KEY"
+python run_cellia.py
 ```
 
 > Recommended: Python ≥ 3.9 with Scanpy and Clustered AnnData
@@ -101,7 +103,7 @@ adata = cellia_run(
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-pytest
+pytest 
 ```
 
 ---
