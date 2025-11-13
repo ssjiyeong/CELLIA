@@ -25,20 +25,21 @@ Conventional cell type annotation relies on manual curation or reference mapping
 ```
 CELLIA/
 │
-├── cellia.py             # Core workflow
-├── cellia_web.py         # Web interface
+├── cellia.py               # Core workflow
+├── cellia_web.py           # Web interface
 │
-├── run_cellia.py         # Script to run LLM-based annotation only
-├── run_cellia_web.py     # Script to run full workflow (annotation + web)
+├── run_cellia.py           # Script to run LLM-based annotation only
+├── run_cellia_web.py       # Script to run full workflow (annotation + web)
+├── cellia_tutorial.ipynb   # Tutorial to CELLIA workflow
 │  
-├── dataset/              # Example datasets (.h5ad)
-│   └── CRC.h5ad          # Example AnnData file used for testing
+├── dataset/                # Example datasets (.h5ad)
+│   └── CRC.h5ad            # Example AnnData file used for testing
 │ 
-├── database/             # Curated tissue-specific marker gene resources
+├── database/               # Curated tissue-specific marker gene resources
 │   └── Marker_DB.csv
 │ 
-├── requirements.txt      # Dependencies
-└── README.md             # Documentation
+├── requirements.txt        # Dependencies
+└── README.md               # Documentation
 ```
 
 ---
@@ -87,8 +88,10 @@ export API_KEY="YOUR_API_KEY"
 ```bash
 python run_cellia_web.py   
 ```
-Then open the web interface in your brower:
+Then open the web interface in your brower: \
+```text
 http://localhost:port
+```
 
 **B. LLM-based annotation only**
 ```bash
@@ -115,7 +118,7 @@ adata = cellia_run(
 
 ## 📘 Tutorial
 
-A Jupyter notebook tutorial is provided in cellia_tutorial.ipynb.
+A Jupyter notebook tutorial is provided in **cellia_tutorial.ipynb**. \
 It shows the full CELLIA workflow with example data.
 
 ## Advanced usage (override defaults via CLI arguments)
