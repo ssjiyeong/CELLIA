@@ -77,23 +77,25 @@ pip install -r requirements.txt
 
 ## 🗣️ Basic Usage
 
-### ▶️ Run CELLIA
-After installing dependencies and creating an environment (Conda or virtualenv),  
+### ▶️ Command Line Usage
+After installing dependencies and creating an environment,  
 you can run CELLIA in two ways:
 ```bash
 export API_KEY="YOUR_API_KEY"
-# Full workflow: LLM-based annotation + interactive web visualization
+```
+**A. Full wrokflow (LLM-based annotation + web interface)**
+```bash
 python run_cellia_web.py   
 ```
-```text
-You can then open:
+Then open the web interface in your brower:
 http://localhost:port
-```
+
+**B. LLM-based annotation only**
 ```bash
-export API_KEY="YOUR_API_KEY"
-# LLM-based annotation only (no web interface)
 python run_cellia.py
 ```
+
+### ▶️ Python script / Jupyter notebooks Usage
 
 ```python
 from cellia import *
@@ -110,6 +112,11 @@ adata = cellia_run(
     model="gpt-4.1-2025-04-14"
 )
 ```
+
+## 📘 Tutorial
+
+A Jupyter notebook tutorial is provided in cellia_tutorial.ipynb.
+It shows the full CELLIA workflow with example data.
 
 ## Advanced usage (override defaults via CLI arguments)
 
@@ -138,7 +145,7 @@ python run_cellia.py \
   --api_key "YOUR_API_KEY" \
   --model "models/gemini-2.5-flash-lite" 
   ```
-  
+
 ---
 
 ## 💻 Output Example
