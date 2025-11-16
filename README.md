@@ -132,7 +132,7 @@ You can override the default settings using command-line arguments.
 ```bash
 python run_cellia_web.py \
   --adata dataset/YourAnnData.h5ad \
-  --tissue_db "PBMC" \
+  --tissue_db "PBMC|blood" \
   --tissue_type "human PBMCs" \
   --n_top_markers 20 \
   --api_key "YOUR_API_KEY" \
@@ -158,16 +158,18 @@ python run_cellia.py \
 
 ```json
 {
-  "cluster_id": "C5",
-  "cell_type": "Liver Sinusoidal Endothelial Cell (LSEC)",
-  "marker_explanations": {
-    "LYVE1": "Highly specific marker for LSECs involved in scavenging",
-    "CLEC4G": "Endocytic receptor specific to LSECs for antigen uptake"
-  },
-  "evidence_score": {
-    "score": 0.92,
-    "reason": "Multiple high-specificity markers detected"
-  }
+    "1": {
+        "cell_type": "Liver sinusoidal endothelial cell (LSEC)",
+        "marker_explanations": {
+            "FCN3": "Strongly and selectively expressed in LSECs; important for immune functions in the liver vasculature.",
+            "CLEC4G": "Highly specific marker of human LSECs, mediating scavenger and cell adhesion roles.",
+            "CLEC4M": "Also known as L-SIGN, specifically marks LSECs in the liver.",
+            "LYVE1": "Expressed in liver sinusoidal endothelial cells involved in endocytic and scavenger functions.",
+            "FCN2": "Associated with LSEC immune surveillance functions."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific and well-validated LSEC markers present, especially CLEC4G, CLEC4M, and FCN3, which are signature genes for liver sinusoidal endothelial cells."
+    },
 }
 ```
 
@@ -176,9 +178,6 @@ python run_cellia.py \
 ## 🧩 Citation
 
 If you use **CELLIA** in your work, please cite:
-
-> Shin, J.Y. *et al.*  
-> *Curated tissue-specific marker integration enhances LLM-based cell type annotation in single-cell analysis* (2025)
 
 ---
 
