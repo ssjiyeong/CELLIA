@@ -244,7 +244,7 @@ def gpt_anno(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../cellia_output"
+    output_dir = "./cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     # --- Loop over clusters ---
@@ -699,7 +699,7 @@ def claude_anoo(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../cellia_output"
+    output_dir = "./cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     # --- Prompt templates ---
