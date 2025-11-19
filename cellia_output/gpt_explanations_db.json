@@ -1,0 +1,74 @@
+{
+    "1": {
+        "cell_type": "Plasma cell",
+        "marker_explanations": {
+            "SDC1": "Encodes CD138, a canonical plasma cell surface marker.",
+            "JCHAIN": "Immunoglobulin J chain, highly expressed in antibody-secreting plasma cells.",
+            "MZB1": "Chaperone involved in immunoglobulin secretion, specific to plasma cells.",
+            "SLAMF7": "Surface protein enriched in plasma cells and used for their identification.",
+            "CD38": "Highly expressed on plasma cells, used as a diagnostic marker."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific plasma cell markers (SDC1/CD138, JCHAIN, MZB1, SLAMF7, CD38) are present, strongly supporting the annotation."
+    },
+    "2": {
+        "cell_type": "Epithelial cancer cell (tumor epithelial cell)",
+        "marker_explanations": {
+            "EPCAM": "Highly expressed in epithelial cells and a canonical marker for epithelial and carcinoma cells.",
+            "MUC13": "Mucin gene upregulated in colorectal cancer epithelial cells.",
+            "PROM1": "Also known as CD133, a marker of cancer stem-like epithelial cells in CRC.",
+            "SPINK1": "Overexpressed in colorectal and other epithelial cancers.",
+            "FABP6": "Expressed in intestinal epithelial cells, especially in the ileum and CRC."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific epithelial and colorectal cancer-associated markers (EPCAM, MUC13, PROM1, SPINK1, FABP6) are present, strongly supporting tumor epithelial cell identity."
+    },
+    "3": {
+        "cell_type": "Mast cell",
+        "marker_explanations": {
+            "CPA3": "Highly specific for mast cells, encodes carboxypeptidase A3, a classic mast cell protease.",
+            "HPGDS": "Enzyme involved in prostaglandin D2 synthesis, highly expressed in mast cells.",
+            "LTC4S": "Leukotriene C4 synthase, key enzyme in mast cell eicosanoid metabolism.",
+            "RGS13": "Regulator of G-protein signaling, selectively expressed in mast cells.",
+            "GATA2": "Transcription factor important for mast cell development and maintenance."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific mast cell markers (CPA3, HPGDS, LTC4S, RGS13) are present, strongly supporting mast cell identity in CRC tissue."
+    },
+    "4": {
+        "cell_type": "Tumor-associated macrophage",
+        "marker_explanations": {
+            "CSF1R": "Highly specific for macrophages, especially tumor-associated macrophages (TAMs) in CRC.",
+            "C1QA": "Classical macrophage marker, part of the complement system, enriched in TAMs.",
+            "AIF1": "Also known as IBA1, a well-known macrophage marker.",
+            "CD14": "Monocyte/macrophage marker, involved in innate immune response.",
+            "FCGR3A": "Expressed in macrophages, especially those with an activated phenotype in tumors."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific macrophage/TAM markers (CSF1R, C1QA, AIF1, CD14, FCGR3A) are present, strongly supporting the annotation in the CRC context."
+    },
+    "5": {
+        "cell_type": "Cancer-associated fibroblast (CAF)",
+        "marker_explanations": {
+            "PDGFRA": "A canonical marker for fibroblasts and CAFs, especially in the tumor microenvironment.",
+            "PDGFRB": "Frequently expressed in activated fibroblasts/CAFs, involved in stromal remodeling.",
+            "COL3A1": "Encodes type III collagen, a major ECM component produced by fibroblasts.",
+            "ADAMTS4": "Matrix metalloproteinase involved in ECM remodeling, characteristic of activated fibroblasts.",
+            "PRELP": "Extracellular matrix protein, enriched in fibroblasts."
+        },
+        "evidence_score": 0.9,
+        "evidence_reason": "Multiple highly specific CAF/fibroblast markers (PDGFRA, PDGFRB, COL3A1) are present, strongly supporting CAF identity in CRC."
+    },
+    "6": {
+        "cell_type": "CD8+ T cell",
+        "marker_explanations": {
+            "CD8A": "Encodes the CD8 alpha chain, a definitive marker of cytotoxic T lymphocytes.",
+            "GZMA": "Granzyme A is a cytotoxic molecule expressed in activated CD8+ T cells.",
+            "CD2": "A pan-T cell marker, present on all mature T cells.",
+            "CD247": "Component of the T cell receptor-CD3 complex, specific to T cells.",
+            "TIGIT": "An immune checkpoint receptor highly expressed on activated and exhausted T cells, including CD8+ subsets."
+        },
+        "evidence_score": 0.95,
+        "evidence_reason": "Multiple highly specific markers for CD8+ T cells (CD8A, GZMA, CD2, CD247, TIGIT) are present, strongly supporting this annotation in the CRC context."
+    }
+}
