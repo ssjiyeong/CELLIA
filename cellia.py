@@ -482,7 +482,7 @@ def gemini_anno(
     top_dict = {}
     unique_clusters = marker_df["cluster"].unique()
 
-    output_dir = "../cellia_output"
+    output_dir = "./cellia_output"
     os.makedirs(output_dir, exist_ok=True)
 
     for cluster in tqdm(unique_clusters, desc="LLM annotation per cluster"):
