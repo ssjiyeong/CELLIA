@@ -32,6 +32,8 @@ CELLIA/
 ├── run_cellia_web.py       # Script to run full workflow (annotation + web)
 ├── cellia_tutorial.ipynb   # Tutorial to CELLIA workflow
 │  
+├── cellia_output/          # CELLIA annotation results (JSON / CSV)
+│  
 ├── dataset/                # Example datasets (.h5ad)
 │   └── CRC.h5ad            # Example AnnData file used for testing
 │ 
