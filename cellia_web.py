@@ -396,7 +396,7 @@ def launch_cap_style_app(adata, port=8051, debug=True, num_top_k: int = 15, rati
     app = Dash(__name__, external_stylesheets=['https://use.fontawesome.com/releases/v5.15.4/css/all.css'])
     app.title = "Cell Annotation Explorer"
 
-    app.index_string = """\\
+    app.index_string = """
     <!DOCTYPE html>
     <html>
         <head>
