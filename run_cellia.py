@@ -79,7 +79,11 @@ def main():
         model=args.model
     )
 
-    print("CELLIA completed successfully.")
+    adata.write_h5ad("dataset/CRC_cellia_annotated.h5ad")
+
+    print("CELLIA annotation completed successfully.")
+    print("Save to dataset/CRC_cellia_annotated.h5ad\n")
+
     print(result)
 
 if __name__ == "__main__":
