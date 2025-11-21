@@ -82,7 +82,7 @@ pip install -r requirements.txt
 
 ### ► Command Line Usage
 After installing dependencies and creating an environment,  
-you can run CELLIA in two ways:
+you can run CELLIA in three ways:
 ```bash
 export API_KEY="YOUR_API_KEY"
 ```
@@ -98,6 +98,13 @@ http://localhost:port
 **B. LLM-based annotation only**
 ```bash
 python run_cellia.py
+```
+
+**C. Interactive interface only**
+Runs the CELLIA web interface using pre-computed results.
+This requires that the input AnnData and {LLM}_explanations_db.json already follow the CELLIA annotation output format.
+```bash
+python run_cellia_web_only.py
 ```
 
 ### ► Python script / Jupyter notebooks Usage
