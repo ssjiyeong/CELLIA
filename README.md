@@ -100,7 +100,7 @@ http://localhost:port
 python run_cellia.py
 ```
 
-**C. Interactive interface only**
+**C. Interactive interface only** \
 Runs the CELLIA web interface using pre-computed results.
 This requires that the input AnnData and {LLM}_explanations_db.json already follow the CELLIA annotation output format.
 ```bash
